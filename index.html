@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspire Service QMD</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        #disability{
+            width: 40px !important;
+            margin-right: 40px !important;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container container-media">
+        <div class="header">
+
+        <div class="logo">
+            <h1>Aspire QMD</h1>
+        </div>
+
+        <div class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#Service-section">Services</a></li>
+                <li><a href="#contact-us" id="contact-align">Contact Us</a></li>
+                <li><input type="text" placeholder="search our service" class="txtsearch"><button class="btn-search">Search</button></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="banner">
+        <div class="appointment">
+            <a href="appointment.html" class="appointment-text"><h2 class="h2-text-appointment">Book Appointment</h2></a>
+        </div>
+    </div>
+
+
+    <div class="Service-section" id="Service-section">
+
+        <div><h1 class="our-services">OUR SERVICES</h1></div>
+
+        <div ><h1 class="h-m">HOUSING AND MENTAL HEALTH SUPPORT</h1></div>
+
+        <div class="images-for-service-type">
+             <img src="Asset/mental-health-support.jpeg" alt="" class="image-service">
+             <img src="Asset/group-staff.jpg" alt="" class="image-service">  
+             <img src="Asset/support-6.jpg" alt="" class="image-service">
+             <img src="Asset/cashier.jpg" alt="" class="image-service">  
+             <img src="Asset/helping-pic.jpg" alt="" class="image-service">
+             <img src="Asset/helping-pic.jpg" alt="" class="image-service">
+        </div>
+    </div>
+
+    <div class="counseling"><h1>COUNSELING BY SKILLED PSYCHOLOGIST</h1></div>
+    <div>
+        <img src="Asset/cashier.jpg" alt="" class="skilled-counsellor">
+    </div>
+    <h1 class="contact-us-text">Contact Us</h1>
+    <div class="asteric">all fields marked with * are important</div>
+    <div id="contact-us">
+        
+        <form action="" class="contact-us">
+           <label for=""><span class="important">*</span>FirstName:</label>
+           <br>
+           <input type="text" placeholder="enter your first name" id="FirstName" required>
+           <br><br>
+           <label for=""><span class="important">*</span>Lastname:</label><br>
+            <input type="text" placeholder="enter your last name" id="last" required>
+            <br><br>
+            <div class="select-div">
+            <label for=""><span class="important">*</span>Gender:</label><br>
+            <select name="gender" id="gender-type" required>
+                <option value=""></option>
+                <option value="male">MALE</option>
+                <option value="female">FEMALE</option>
+            </select>
+            <div class="pad-select"></div>
+           <label for="" class="lbl-disability"><span class="important">*</span>Disability:</label><br>
+            <select name="disability" id="disability" required>
+                <option value=""></option>
+                <option value="yes">YES, I have a disability, or have had one in the past</option>
+                <option value="no">NO,I do not have a disability and have not had one in the past</option>
+                <option value="">I do not want to answer</option>
+            </select>
+        </div>
+            <br>
+            <label for=""><span class="important">*</span>Phone Number:</label><br>
+            <input type="text" placeholder="mobile number" id="phonenumber" required>
+            <br><br>
+            <label for=""><span class="important">*</span>Address:</label><br>
+            <input type="text" placeholder="enter your address" id="address" required>
+            <br>
+            <br>
+            <input type="submit" value="submit" class="btn-submit-form" id="reach-out">
+        </form>
+
+    </div>
+
+    <div class="footer">
+        <h4 class="footer-text">All right reserved &copy; 2024 Aspire QMD.</h4>
+    </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/validate.js"></script>
+    
+</body>
+</html>

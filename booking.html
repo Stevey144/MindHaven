@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+
+        .appointment-container{
+                width: 400px !important;
+                margin: auto !important;
+            }
+            
+        @media only screen and (min-width:370px) and (max-width:602px){
+
+            .appointment-container{
+                width: 400px !important;
+                margin: auto !important;
+            }
+
+          
+
+            .nav ul li {
+                float: left !important;
+            }
+            .nav ul li a{
+                display: inline-flex !important;
+            }
+           
+            ul{
+                width: 100%  !important;
+            }
+
+            .nav{
+                width: 100% !important;
+            }
+            a{
+                width: 100% !important;
+            }
+
+            .appointment-container{
+                width: 400px !important;
+                margin: auto !important;
+            }
+
+
+
+        }
+        @media only screen and (min-width:300px) and (max-width:800px){
+
+            .h1-text-for-appoitment{
+                text-align: center !important;
+            }
+            .question-text{
+                text-align: center !important;
+            }
+
+            .logo h1{
+                margin-top: 31px !important;
+            }
+
+            .container{
+                width: 100% !important;
+            }
+
+            .header{
+                width: 100%;
+                display: flex !important;
+            }
+
+            .nav{
+                width: 70% !important;
+            }
+            ul{
+                width: 100% !important;
+            }
+             a{
+                font-size: 15px !important;
+
+            }
+            
+        }
+    </style>
+
+    
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+
+        <div class="logo">
+            <h1>Aspire QMD</h1>
+        </div>
+
+        <div class="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="appointment.html">Sign In</a></li>
+                <li><a href="signup.html">Sign UP</a></li>
+            </ul>
+        </div>
+
+
+    </div>
+
+    <div class="appointment-container">
+    <div class="appointment-header">
+        <h1 class="h1-text-for-appoitment">Appointment Schedule Form</h1>
+        <div class="question-text">do not have an account? <a href="">Sign Up</a></div>
+    </div>
+
+
+    <div class="Booking-Form">
+        <form class="" >
+           <label for=""><span class="important">*</span>Date for Appointment:</label>
+           <br>
+           <input type="date"  id="date" required>
+           <br><br>
+           <label for=""><span class="important">*</span>Reason For Appointment:</label><br>
+            <textarea name="textarea" cols="45" rows="10" id="reason_for_booking"></textarea>
+            <br><br>
+            <div class="select-div">
+            <input type="submit" value="submit" class="btn-booking" id="btn-booking">
+        </form>
+
+    </div>
+
+</div>
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/validate.js"></script>
+
+</body>
+</html>
