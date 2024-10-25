@@ -1,0 +1,56 @@
+.container .nav{
+    float: right;
+    width:65%;
+    padding: 10px;
+}
+
+.appointment-container{
+    width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    height: 600px;
+
+}
+
+.nav ul{
+    margin-left: 200px !important;
+}
+.h1-text-for-appoitment{
+    text-align: center;
+}
+
+.h1-text-for-appoitment{
+    font-family: verdana;
+}
+.question-text{
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+.Sign-In-Form, .Booking-Form{
+    width: 340px;
+    margin: 0 auto;
+}
+
+@media only screen and (min-width:370px) and (max-width:602px){
+
+    .appointment-container{
+        width: 100% !important;
+    }
+        .h1-text-for-appoitment{
+            font-size: 15px;
+            text-align: center;
+        }
+
+.question-text{
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+
+}
+
+
