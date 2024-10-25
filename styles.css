@@ -68,11 +68,14 @@
 }
 
 .banner{
-    width: 60%;
-    height: 300px;
-    background-image: url(/Asset/support-worker1.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
+    /* width: 60%;
+    height: 300px; */
+    background-image: url('Asset/support-worker1.jpg');
+    background-size: cover; /* Ensures the image covers the entire viewport */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Avoids repeating the image */
+  height: 100vh; /* Sets height to full viewport */
+  margin: 0; /* Removes default margin */
 }
 
 .Service-section{
