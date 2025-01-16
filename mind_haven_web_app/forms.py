@@ -5,11 +5,15 @@ from django.core.exceptions import ValidationError
 from .models import Contacts
 from .models import Signup
 
-class ContactsForm(forms.ModelForm):
+class ContactsForm(ModelForm):
     class Meta:
         model = Contacts
-        fields = '__all__'
+        fields = ['FirstName', 'last', 'phonenumbers', 'address','gender','disability']
         widgets = {
+            'FirstName': TextInput(attrs={'class': 'form-control'}),
+            'last': TextInput(attrs={'class': 'form-control'}),
+            'phonenumbers': NumberInput(attrs={'class': 'form-control'}),
+            'address': TextInput(attrs={'class': 'form-control'}),
             'gender': forms.Select(choices=Contacts.GENDER_CHOICES),
             'disability': forms.Select(choices=Contacts.DISABILITY_CHOICES),
         }

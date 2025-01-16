@@ -69,39 +69,26 @@
 
             {% csrf_token %}
 
-           <label for=""><span class="important">*</span>FirstName:</label>
-           <br>
-           <input type="text" placeholder="enter your first name" id="FirstName" required>
-           <br><br>
-           <label for=""><span class="important">*</span>Lastname:</label><br>
-            <input type="text" placeholder="enter your last name" id="last" required>
-            <br><br>
-            <div class="select-div">
-            <label for=""><span class="important">*</span>Gender:</label><br>
-            <select name="gender" id="gender-type" required>
-                <option value=""></option>
-                <option value="male">MALE</option>
-                <option value="female">FEMALE</option>
-            </select>
-            <div class="pad-select"></div>
-             <br>
-           <label for="" class="lbl-disability"><span class="important">*</span>Disability:</label><br>
-            <select name="disability" id="disability" required>
-                <option value=""></option>
-                <option value="yes">Yes, I have a disability, or have had one in the past</option>
-                <option value="no">No, I do not have a disability and have not had one in the past</option>
-                <option value="">I do not want to answer</option>
-            </select>
-        </div>
-            <br>
-            <label for=""><span class="important">*</span>Phone Number:</label><br>
-            <input type="text" placeholder="mobile number" id="phonenumber" required>
-            <br><br>
-            <label for=""><span class="important">*</span>Address:</label><br>
-            <input type="text" placeholder="enter your address" id="address" required>
-            <br>
-            <br>
+           {% for field in form %}
+                <div class="mb-3">
+                    <!-- Render the label with Bootstrap form-label class -->
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    
+                    <!-- Render the field itself with Bootstrap form-control class -->
+                    {{ field }}
+                    
+                    <!-- Display any validation errors for this field -->
+                    {% if field.errors %}
+                        <div class="text-danger">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
             <input type="submit" value="submit" class="btn-submit-form" id="reach-out">
+
+        </div>
         </form>
 
     </div>

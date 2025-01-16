@@ -16,10 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from mind_haven_web_app.views import appointment, welcome
+from mind_haven_web_app.views import contact_view
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('welcome.html',welcome, name="welcome"),
-    path('',welcome),
+    path('welcome.html',contact_view, name="welcome"),
+    path('',contact_view),
     path('mindhaven/', include('mind_haven_web_app.urls'))
 ]

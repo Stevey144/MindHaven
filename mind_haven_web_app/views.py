@@ -29,13 +29,6 @@ def signup(request):
 
     return render(request, 'signup.html', {'form': form})
 
-
-
-def welcome(request):
-    return render(request, "mind_haven_web_app/welcome.html")
-
-
-
 def about(request):
     return render(request, "mind_haven_web_app/about.html")
 
