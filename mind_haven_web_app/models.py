@@ -16,6 +16,8 @@ class Contacts(models.Model):
     last=models.CharField(max_length=50)
     phonenumbers=models.IntegerField()
     address=models.CharField(max_length=100)
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='male')
+    disability = models.CharField(max_length=15, choices=DISABILITY_CHOICES, default='no')
     
     
     def __str__(self):
