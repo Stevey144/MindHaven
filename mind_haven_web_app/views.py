@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Contacts
-from .forms import ContactsForm
+from .forms import ContactsForm, SignupForm
 
 # Create your views here.
 
@@ -19,6 +18,19 @@ def contact_view(request):
         form = ContactsForm()
 
     return render(request, 'mind_haven_web_app/welcome.html', {'form': form})
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "You have successfully signed up!")
+            return redirect('home')  
+    else:
+        form = SignupForm()
+
+    return render(request, 'signup.html', {'form': form})
 
 
 
