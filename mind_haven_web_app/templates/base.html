@@ -65,7 +65,7 @@
     <div class="asteric">all fields marked with * are important</div>
     <div id="contact-us">
         
-        <form action="" class="contact-us" action="{% url 'contact' %}">
+        <form method="post" class="contact-us" >
 
             {% csrf_token %}
 
@@ -99,8 +99,5 @@
 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{% static 'js/validate.js' %}"></script>
-    
 </body>
 </html>
