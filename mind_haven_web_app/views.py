@@ -2,16 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ContactsForm, SignupForm
 
-# Create your views here.
-
-
 def contact_view(request):
     if request.method == 'POST':
         form = ContactsForm(request.POST)
         if form.is_valid():
-            form.save()  # Save the contact to the database
+            form.save()
             messages.success(request, "Contact has been saved successfully.")
-            return redirect('welcome.html')  # Redirect to the dashboard or another page
+            return redirect('welcome.html')
         else:
             messages.error(request, "There was an error saving the contact.")
     else:
