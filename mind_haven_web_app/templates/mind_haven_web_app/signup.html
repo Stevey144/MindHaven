@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointment</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
@@ -18,9 +19,9 @@
 
         <div class="nav medi-nav">
             <ul class="text">
-                <li class="li"><a href="index.html">Home</a></li>
-                <li class="li"><a href="appointment.html">Sign In</a></li>
-                <li class="li"> <a href="signup.html">Sign UP</a></li>
+                <li><a href="{% url 'welcome' %}">Home</a></li>
+                <li><a href="{% url 'appointment' %}" >Sign In</a></li>
+                <li><a href="{% url 'signup' %}">Sign UP</a></li>
             </ul>
         </div>
 
@@ -31,7 +32,7 @@
 
     <div class="appointment-header nav-header">
         <h1 class="h1-text-for-appoitment sign-up-media">Sign Up</h1>
-        <div class="question-text">already have an account? <a href="appointment.html">Sign In</a></div>
+        <div class="question-text">already have an account? <a href="{% url 'appointment' %}">Sign In</a></div>
     </div>
 
 

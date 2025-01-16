@@ -68,9 +68,8 @@
 }
 
 .banner{
-    /* width: 60%;
-    height: 300px; */
-    background-image: url('Asset/support-worker1.jpg');
+ 
+    background-image: url('/static/images/support-worker1.jpg');
     background-size: cover; /* Ensures the image covers the entire viewport */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Avoids repeating the image */
@@ -393,7 +392,7 @@
 .banner{
     width: 100% !important;
     height: 500px;
-    background-image: url(/Asset/support-worker1.jpg);
+    background-image: url('/static/images/support-worker1.jpg');
     background-size:contain;
     background-repeat: no-repeat;
 }

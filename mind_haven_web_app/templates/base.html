@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aspire Service QMD</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
     <style>
         #disability{
@@ -18,13 +19,13 @@
         <div class="header">
 
         <div class="logo">
-            <h1>Aspire QMD</h1>
+            <h1>MindHaven</h1>
         </div>
 
         <div class="nav">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="{% url 'welcome' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
                 <li><a href="#Service-section">Services</a></li>
                 <li><a href="#contact-us" id="contact-align">Contact Us</a></li>
                 <li><input type="text" placeholder="search our service" class="txtsearch"><button class="btn-search">Search</button></li>
@@ -35,7 +36,7 @@
 
     <div class="banner">
         <div class="appointment">
-            <a href="appointment.html" class="appointment-text"><h2 class="h2-text-appointment">Book Appointment</h2></a>
+            <a href="{% url 'appointment' %}" class="appointment-text"><h2 class="h2-text-appointment">Book Appointment</h2></a>
         </div>
     </div>
 
@@ -47,18 +48,18 @@
         <div ><h1 class="h-m">HOUSING AND MENTAL HEALTH SUPPORT</h1></div>
 
         <div class="images-for-service-type">
-             <img src="Asset/mental-health-support.jpeg" alt="" class="image-service">
-             <img src="Asset/group-staff.jpg" alt="" class="image-service">  
-             <img src="Asset/support-6.jpg" alt="" class="image-service">
-             <img src="Asset/cashier.jpg" alt="" class="image-service">  
-             <img src="Asset/helping-pic.jpg" alt="" class="image-service">
-             <img src="Asset/helping-pic.jpg" alt="" class="image-service">
+             <img src="{% static 'images/mental-health-support.jpeg' %}" alt="" class="image-service">
+             <img src="{% static 'images/group-staff.jpg' %}" alt="" class="image-service">  
+             <img src="{% static 'images/support-6.jpg' %}" alt="" class="image-service">
+             <img src="{% static 'images/cashier.jpg' %}" alt="" class="image-service">  
+             <img src="{% static 'images/helping-pic.jpg' %}" alt="" class="image-service">
+             <img src="{% static 'images/helping-pic.jpg' %}" alt="" class="image-service">
         </div>
     </div>
 
     <div class="counseling"><h1>COUNSELING BY SKILLED PSYCHOLOGIST</h1></div>
     <div>
-        <img src="Asset/cashier.jpg" alt="" class="skilled-counsellor">
+        <img src="{% static 'images/cashier.jpg' %}" alt="" class="skilled-counsellor">
     </div>
     <h1 class="contact-us-text">Contact Us</h1>
     <div class="asteric">all fields marked with * are important</div>
@@ -109,7 +110,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/validate.js"></script>
+    <script src="{% static 'js/validate.js' %}"></script>
     
 </body>
 </html>
