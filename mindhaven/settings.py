@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mind_haven_web_app'
+    'mind_haven_web_app',
 ]
 
 MIDDLEWARE = [
