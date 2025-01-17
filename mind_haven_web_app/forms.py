@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import EmailInput, ModelForm,DateInput, NumberInput, Select,TimeInput,TextInput,IntegerField, ValidationError
-from .models import Contacts,Signup
+from .models import Appointment, Contacts,Signup
 
 class ContactsForm(ModelForm):
     class Meta:
@@ -14,6 +14,23 @@ class ContactsForm(ModelForm):
             'gender': forms.Select(choices=Contacts.GENDER_CHOICES),
             'disability': forms.Select(choices=Contacts.DISABILITY_CHOICES),
         }
+        
+        
+class SignInForm(ModelForm):
+    class Meta:
+        model = Appointment
+        fields = ['Email', 'Password']
+        widgets = {
+            'Email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}),
+            'Password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter your password'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if self.errors.get(field_name):
+                existing_classes = field.widget.attrs.get('class', '')
+                field.widget.attrs['class'] = f'{existing_classes} is-invalid'
         
 class SignupForm(ModelForm):
     confirm_password = forms.CharField(

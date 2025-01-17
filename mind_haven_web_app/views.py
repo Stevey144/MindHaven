@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import ContactsForm,SignupForm
+
+from mind_haven_web_app.models import Signup
+from .forms import ContactsForm, SignInForm,SignupForm
 
 def contact_view(request):
     if request.method == 'POST':
@@ -32,10 +34,25 @@ def signup(request):
     return render(request, 'mind_haven_web_app/signup.html', {'form': form})
 
 
+def sign_in(request):
+    if request.method == 'POST':
+        form = SignInForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['Email']
+            password = form.cleaned_data['Password']
+
+            try:
+                user = Signup.objects.get(email=email, password=password)
+                messages.success(request, 'Successfully signed in!')
+                return redirect('booking.html')  
+            except Signup.DoesNotExist:
+                messages.error(request, 'Invalid email or password. Please try again.')
+    else:
+        form = SignInForm()
+
+    return render(request, 'mind_haven_web_app/appointment.html', {'form': form})
+
+
 def about(request):
     return render(request, "mind_haven_web_app/about.html")
 
-
-
-def appointment(request):
-    return render(request, "mind_haven_web_app/appointment.html")
