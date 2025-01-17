@@ -42,13 +42,9 @@ class SignupForm(ModelForm):
         
         # Check if email or username already exists
         email = cleaned_data.get('email')
-        username = cleaned_data.get('username')
         
         if Signup.objects.filter(email=email).exists():
             raise ValidationError("A user with this email already exists.")
-        
-        if Signup.objects.filter(username=username).exists():
-            raise ValidationError("A user with this username already exists.")
         
         return cleaned_data
 
