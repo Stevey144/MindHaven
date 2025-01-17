@@ -31,6 +31,14 @@ class SignupForm(ModelForm):
             'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter your password'}),
         }
         
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if self.errors.get(field_name):
+                existing_classes = field.widget.attrs.get('class', '')
+                field.widget.attrs['class'] = f'{existing_classes} is-invalid'
+        
+        
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get('password')

@@ -23,7 +23,7 @@ def signup(request):
         if form.is_valid():
             form.save()  # Save the user to the database
             messages.success(request, 'Signup successful!')  # Show success message
-            return redirect('mind_haven_web_app/signup.html')  # Redirect to the desired page (e.g., 'welcome.html')
+            return redirect('signup.html')  # Redirect to the desired page (e.g., 'welcome.html')
         else:
             messages.error(request, 'There were some errors in your form. Please check the fields and try again.')  # Show error message
     else:
