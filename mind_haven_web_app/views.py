@@ -21,13 +21,13 @@ def signup(request):
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
-            form.save()  # Save the user to the database
-            messages.success(request, 'Signup successful!')  # Show success message
-            return redirect('signup.html')  # Redirect to the desired page (e.g., 'welcome.html')
+            form.save()  
+            messages.success(request, 'Signup successful!') 
+            return redirect('signup.html') 
         else:
             messages.error(request, 'There were some errors in your form. Please check the fields and try again.')  # Show error message
     else:
-        form = SignupForm()  # Render an empty form for GET requests
+        form = SignupForm()  
 
     return render(request, 'mind_haven_web_app/signup.html', {'form': form})
 
