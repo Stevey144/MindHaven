@@ -56,3 +56,6 @@ def sign_in(request):
 def about(request):
     return render(request, "mind_haven_web_app/about.html")
 
+def booking(request):
+    return render(request, "mind_haven_web_app/booking.html")
+
