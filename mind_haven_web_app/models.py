@@ -1,4 +1,7 @@
+from datetime import time
 from django.db import models
+from django.core.validators import EmailValidator
+
 # Create your models here.
 class Contacts(models.Model):
     GENDER_CHOICES = [
@@ -33,13 +36,13 @@ class Appointment(models.Model):
 
 
 class Signup(models.Model):
-    Firstname=models.CharField(max_length=100)
-    Lastname= models.CharField(max_length=100)
-    Email=models.CharField(max_length=100, unique=True)
-    Password=models.CharField(max_length=100)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=255, unique=True, validators=[EmailValidator()])
+    password = models.CharField(max_length=255)
     
     def __str__(self):
-      return f"{self.Firstname} {self.Lastname} {self.Email}"
+       return f"{self.first_name} {self.last_name} {self.email}"
  
 class Booking(models.Model):
     date = models.DateField()

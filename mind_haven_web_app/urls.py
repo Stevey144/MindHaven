@@ -7,6 +7,5 @@ from mind_haven_web_app import views
 urlpatterns = [
     path('about', views.about, name="about"),
     path('appointment',views.appointment, name="appointment"),
-    path('signup',views.signup, name="signup"),
-    path('contact', views.contact_view, name='contact'),  
+    path('sign-up',views.signup, name="sign-up"),
 ]

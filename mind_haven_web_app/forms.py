@@ -1,9 +1,6 @@
 from django import forms
-from django.forms import ModelForm,DateInput, NumberInput, Select,TimeInput,TextInput,IntegerField
-from django.core.exceptions import ValidationError
-
-from .models import Contacts
-from .models import Signup
+from django.forms import EmailInput, ModelForm,DateInput, NumberInput, Select,TimeInput,TextInput,IntegerField, ValidationError
+from .models import Contacts,Signup
 
 class ContactsForm(ModelForm):
     class Meta:
@@ -18,18 +15,40 @@ class ContactsForm(ModelForm):
             'disability': forms.Select(choices=Contacts.DISABILITY_CHOICES),
         }
         
-class SignupForm(forms.ModelForm):
-    # Adding password validation to ensure the password is entered twice for confirmation
-    confirm_password = forms.CharField(widget=forms.PasswordInput(), label='Confirm Password')
-
+class SignupForm(ModelForm):
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm your password'}),
+        label='Confirm Password'
+    )
+     
     class Meta:
         model = Signup
-        fields = ['Firstname', 'Lastname', 'Email', 'Password']
-    
-    def clean_confirm_password(self):
-        password = self.cleaned_data.get('Password')
-        confirm_password = self.cleaned_data.get('confirm_password')
-        if password and confirm_password and password != confirm_password:
-            raise forms.ValidationError("Passwords do not match.")
-        return confirm_password
+        fields = '__all__'  # Include all fields from the Meeting model
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your first name'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your last name'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email address'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter your password'}),
+        }
+        
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        confirm_password = cleaned_data.get('confirm_password')
+        
+        # Check if password and confirm password match
+        if password != confirm_password:
+            raise ValidationError("Password and Confirm Password do not match.")
+        
+        # Check if email or username already exists
+        email = cleaned_data.get('email')
+        username = cleaned_data.get('username')
+        
+        if Signup.objects.filter(email=email).exists():
+            raise ValidationError("A user with this email already exists.")
+        
+        if Signup.objects.filter(username=username).exists():
+            raise ValidationError("A user with this username already exists.")
+        
+        return cleaned_data
 

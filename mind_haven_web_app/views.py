@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import ContactsForm, SignupForm
+from .forms import ContactsForm,SignupForm
 
 def contact_view(request):
     if request.method == 'POST':
@@ -18,16 +18,19 @@ def contact_view(request):
 
 
 def signup(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, "You have successfully signed up!")
-            return redirect('home')  
+            form.save()  # Save the user to the database
+            messages.success(request, 'Signup successful!')  # Show success message
+            return redirect('welcome.html')  # Redirect to the desired page (e.g., 'welcome.html')
+        else:
+            messages.error(request, 'There were some errors in your form. Please check the fields and try again.')  # Show error message
     else:
-        form = SignupForm()
+        form = SignupForm()  # Render an empty form for GET requests
 
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'mind_haven_web_app/signup.html', {'form': form})
+
 
 def about(request):
     return render(request, "mind_haven_web_app/about.html")
@@ -36,8 +39,3 @@ def about(request):
 
 def appointment(request):
     return render(request, "mind_haven_web_app/appointment.html")
-
-
-
-def signup(request):
-    return render(request, "mind_haven_web_app/signup.html")
