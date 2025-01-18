@@ -44,12 +44,12 @@
     
                     // Handle the OK button click for success
                     $('#modalOkButton').on('click', function () {
-                        window.location.href = "{% url 'appointment' %}"; // Redirect to booking.html
+                        window.location.href = "{% url 'appointment' %}"; 
                     });
     
                     // Handle modal hidden event for success
                     $('#messageModal').on('hidden.bs.modal', function () {
-                        window.location.href = "{% url 'appointment' %}"; // Redirect to booking.html
+                        window.location.href = "{% url 'appointment' %}"; 
                     });
                 {% endif %}
             {% endfor %}
