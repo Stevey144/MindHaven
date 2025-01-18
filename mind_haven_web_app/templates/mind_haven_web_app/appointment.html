@@ -1,92 +1,97 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appointment</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-
-        <div class="header">
-
-        <div class="logo">
-            <h1>Aspire QMD</h1>
-        </div>
-
-        <div class="nav">
-            <ul>
-
-                <li><a href="{% url 'welcome' %}">Home</a></li>
-                <li><a href="{% url 'appointment' %}" >Sign In</a></li>
-                <li><a href="{% url 'sign-up' %}">Sign UP</a></li>
-
-            </ul>
-        </div>
+{% block title %}
+Appointment
+{% endblock title %}
 
 
+{% block css-static-link %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+{% endblock css-static-link %}
+
+
+
+{% block container-content %}
+
+<div class="container">
+
+    <div class="header">
+
+    <div class="logo">
+        <h1>Aspire QMD</h1>
     </div>
 
-      <div class="section-for-sign-in">
-    <div class="appointment-header">
-        <h1 class="h1-text-for-appoitment">Sign In To Book Appointment</h1>
-        <div class="question-text">do not have an account? <a href="{% url 'sign-up' %}">Sign Up</a></div>
+    <div class="nav">
+        <ul>
+
+            <li><a href="{% url 'welcome' %}">Home</a></li>
+            <li><a href="{% url 'appointment' %}" >Sign In</a></li>
+            <li><a href="{% url 'sign-up' %}">Sign UP</a></li>
+
+        </ul>
     </div>
 
-    <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="messageModalLabel">Message</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="modalMessage"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
-                </div>
+
+</div>
+
+  <div class="section-for-sign-in">
+<div class="appointment-header">
+    <h1 class="h1-text-for-appoitment"><b>Sign In To Book Appointment</b></h1>
+    <div class="question-text">do not have an account? <a href="{% url 'sign-up' %}">Sign Up</a></div>
+</div>
+
+<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="messageModalLabel">Message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
             </div>
         </div>
     </div>
+</div>
 
 
 
-    <div class="container mt-5">
+<div class="container mt-5">
 
-        <h2>Sign In</h2>
+    <h2>Sign In</h2>
 
-         {% if messages %}
-            <div class="alert-container mb-3">
-                {% for message in messages %}
-                    <div class="alert 
-                        {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %} alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-
-
-        <form method="post" novalidate>
-            {% csrf_token %}
-            {% for field in form %}
-                <div class="mb-3">
-                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.errors %}
-                        <div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>
-                    {% endif %}
+     {% if messages %}
+        <div class="alert-container mb-3">
+            {% for message in messages %}
+                <div class="alert 
+                    {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             {% endfor %}
-            <button type="submit" class="btn btn-primary">Sign In</button>
-        </form>
-    </div>
+        </div>
+    {% endif %}
+
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+</div>
 </div>
 </div>
 
@@ -96,24 +101,24 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    $(document).ready(function () {
-        {% if messages %}
-            {% for message in messages %}
-                $('#modalMessage').text('{{ message }}');
-            {% endfor %}
-            $('#messageModal').modal('show');  // Show the modal only if there are messages
+$(document).ready(function () {
+    {% if messages %}
+        {% for message in messages %}
+            $('#modalMessage').text('{{ message }}');
+        {% endfor %}
+        $('#messageModal').modal('show');  // Show the modal only if there are messages
 
-            $('#modalOkButton').on('click', function () {
-                window.location.href = "{% url 'booking' %}"; // Redirect to booking.html
-            });
+        $('#modalOkButton').on('click', function () {
+            window.location.href = "{% url 'booking' %}"; // Redirect to booking.html
+        });
 
-            $('#messageModal').on('hidden.bs.modal', function () {
-                window.location.href = "{% url 'booking' %}"; // Redirect to booking.html
-            });
+        $('#messageModal').on('hidden.bs.modal', function () {
+            window.location.href = "{% url 'booking' %}"; // Redirect to booking.html
+        });
 
-        {% endif %}
-    });
+    {% endif %}
+});
 </script>
-
-</body>
-</html>
+    
+{% endblock container-content %}
+    

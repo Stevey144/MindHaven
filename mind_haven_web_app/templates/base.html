@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aspire Service QMD</title>
+    <title>{% block title %}MindHaven{% endblock %}</title>
+    
+    {% block css-static-link %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-
+    {% endblock css-static-link %}
+        
     <style>
         #disability{
             width: 50px !important;
@@ -14,7 +17,10 @@
     </style>
 </head>
 <body>
+
     
+    {% block container-content %} 
+
     <div class="container container-media">
         <div class="header">
 
@@ -95,6 +101,9 @@
     </div>
 
     </div>
+
+    {% endblock container-content %}
+
 
 </body>
 </html>
