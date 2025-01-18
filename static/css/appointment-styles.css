@@ -1,3 +1,7 @@
+*{
+    font-family: Khand !important;
+}
+
 .container .nav{
     float: right;
     width:65%;
