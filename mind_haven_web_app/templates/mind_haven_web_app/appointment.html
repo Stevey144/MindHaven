@@ -100,24 +100,32 @@ Appointment
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-$(document).ready(function () {
-    {% if messages %}
-        {% for message in messages %}
-            $('#modalMessage').text('{{ message }}');
-        {% endfor %}
-        $('#messageModal').modal('show');  // Show the modal only if there are messages
-
-        $('#modalOkButton').on('click', function () {
-            window.location.href = "{% url 'booking' %}"; // Redirect to booking.html
-        });
-
-        $('#messageModal').on('hidden.bs.modal', function () {
-            window.location.href = "{% url 'booking' %}"; // Redirect to booking.html
-        });
-
-    {% endif %}
-});
-</script>
+    $(document).ready(function () {
+        {% if messages %}
+            {% for message in messages %}
+                // Set the message text in the modal
+                $('#modalMessage').text('{{ message }}');
+    
+                // Check if the message is a success message
+                {% if message.tags == 'success' %}
+                    // Show the modal only for success messages
+                    $('#messageModal').modal('show');
+    
+                    // Handle the OK button click for success
+                    $('#modalOkButton').on('click', function () {
+                        window.location.href = "{% url 'booking' %}"; // Redirect to booking.html
+                    });
+    
+                    // Handle modal hidden event for success
+                    $('#messageModal').on('hidden.bs.modal', function () {
+                        window.location.href = "{% url 'booking' %}"; // Redirect to booking.html
+                    });
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    });
+    </script>
+    
     
 {% endblock container-content %}
     
