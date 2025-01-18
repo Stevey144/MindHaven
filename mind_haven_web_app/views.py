@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.messages import get_messages
 
 from mind_haven_web_app.models import Signup
 from .forms import ContactsForm, SignInForm,SignupForm
@@ -44,10 +45,13 @@ def sign_in(request):
             try:
                 user = Signup.objects.get(email=email, password=password)
                 messages.success(request, 'Successfully signed in!')
-                return redirect('booking.html')  
+                # return redirect('booking.html')  
             except Signup.DoesNotExist:
                 messages.error(request, 'Invalid email or password. Please try again.')
     else:
+        storage = get_messages(request)
+        list(storage)  
+
         form = SignInForm()
 
     return render(request, 'mind_haven_web_app/appointment.html', {'form': form})
