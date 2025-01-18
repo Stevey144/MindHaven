@@ -1,6 +1,6 @@
 from django import forms
-from django.forms import EmailInput, ModelForm,DateInput, NumberInput, Select,TimeInput,TextInput,IntegerField, ValidationError
-from .models import Appointment, Contacts,Signup
+from django.forms import EmailInput, ModelForm,DateInput, NumberInput, Select, Textarea,TimeInput,TextInput,IntegerField, ValidationError
+from .models import Appointment, Booking, Contacts,Signup
 
 class ContactsForm(ModelForm):
     class Meta:
@@ -72,4 +72,14 @@ class SignupForm(ModelForm):
             raise ValidationError("A user with this email already exists.")
         
         return cleaned_data
+    
+    
+class BookingForm(ModelForm):
+    class Meta:
+        model = Booking
+        fields = ['date', 'textarea']
+        widgets = {
+            'date': DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'textarea': Textarea(attrs={'class': 'form-control', 'cols': 45, 'rows': 10}),
+        }
 

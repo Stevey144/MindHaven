@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.messages import get_messages
 
 from mind_haven_web_app.models import Signup
-from .forms import ContactsForm, SignInForm,SignupForm
+from .forms import BookingForm, ContactsForm, SignInForm,SignupForm
 
 def contact_view(request):
     if request.method == 'POST':
@@ -45,7 +45,6 @@ def sign_in(request):
             try:
                 user = Signup.objects.get(email=email, password=password)
                 messages.success(request, 'Successfully signed in!')
-                # return redirect('booking.html')  
             except Signup.DoesNotExist:
                 messages.error(request, 'Invalid email or password. Please try again.')
     else:
@@ -61,5 +60,17 @@ def about(request):
     return render(request, "mind_haven_web_app/about.html")
 
 def booking(request):
-    return render(request, "mind_haven_web_app/booking.html")
+    if request.method == "POST":
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            form.save()  
+            messages.success(request, 'Appointment Booked!') 
+            return redirect('booking.html') 
+        else:
+            messages.error(request, 'There was an error in booking this Appointment, please try again')  # Show error message
+    else:
+        form = BookingForm()  
+
+    return render(request, 'mind_haven_web_app/booking.html', {'form': form})
+
 
