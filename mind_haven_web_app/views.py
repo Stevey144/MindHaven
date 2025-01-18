@@ -55,10 +55,6 @@ def sign_in(request):
 
     return render(request, 'mind_haven_web_app/appointment.html', {'form': form})
 
-
-def about(request):
-    return render(request, "mind_haven_web_app/about.html")
-
 def booking(request):
     if request.method == "POST":
         form = BookingForm(request.POST)

@@ -22,8 +22,7 @@
     </style>
 </head>
 <body>
-
-    
+ 
     {% block container-content %} 
 
     <div class="container container-media">
@@ -36,10 +35,9 @@
         <div class="nav">
             <ul>
                 <li><a href="{% url 'welcome' %}">Home</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
                 <li><a href="#Service-section">Services</a></li>
                 <li><a href="#contact-us" id="contact-align">Contact Us</a></li>
-                <li><input type="text" placeholder="search our service" class="txtsearch"><button class="btn-search">Search</button></li>
+                <li><a href="#contact-us" id="contact-align">Admin</a></li>
             </ul>
         </div>
 
