@@ -96,17 +96,7 @@
     <h1 class="contact-us-text">Contact Us</h1>
     <div class="asteric">all fields marked with * are important</div>
 
-    {% if messages %}
-    <div class="alert-container mb-3">
-        {% for message in messages %}
-            <div class="alert 
-                {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
-    </div>
-{% endif %}
+   {% include 'message.html' %}
 
 
     <div id="contact-us">
@@ -165,8 +155,6 @@
     </script>
 
     {% endblock container-content %}
-
-
 
 </body>
 </html>
