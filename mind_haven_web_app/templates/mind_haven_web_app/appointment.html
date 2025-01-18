@@ -15,49 +15,28 @@ Appointment
 
 {% block container-content %}
 
-<div class="container">
+  <div class="section-for-sign-in mt-4">
+        <div class="appointment-header">
+            <h1 class="h1-text-for-appoitment"><b>Sign In To Book Appointment</b></h1>
+            <div class="question-text">do not have an account? <a href="{% url 'sign-up' %}">Sign Up</a></div>
+        </div>
 
-    <div class="header">
-
-    <div class="logo">
-        <h1>Aspire QMD</h1>
-    </div>
-
-    <div class="nav">
-        <ul>
-
-            <li><a href="{% url 'welcome' %}">Home</a></li>
-            <li><a href="{% url 'appointment' %}" >Sign In</a></li>
-            <li><a href="{% url 'sign-up' %}">Sign UP</a></li>
-
-        </ul>
-    </div>
-
-
-</div>
-
-  <div class="section-for-sign-in">
-<div class="appointment-header">
-    <h1 class="h1-text-for-appoitment"><b>Sign In To Book Appointment</b></h1>
-    <div class="question-text">do not have an account? <a href="{% url 'sign-up' %}">Sign Up</a></div>
-</div>
-
-<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="messageModalLabel">Message</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p id="modalMessage"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
+        <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="messageModalLabel">Message</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalMessage"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="modalOkButton">OK</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
 
 
@@ -93,7 +72,6 @@ Appointment
       </form>
     </div>
     </div>
-</div>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
