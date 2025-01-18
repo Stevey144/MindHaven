@@ -40,25 +40,7 @@
         </ul>
     {% endif %}
 
-    <script>
-        $(document).ready(function() {
-          {% if messages %}
-            {% for message in messages %}
-              {% if message.tags == 'success' %}
-                $('#modalMessage').text('{{ message }}');
-                $('#modalRedirect').show();  // Show the redirect button for success
-              {% else %}
-                $('#modalMessage').text('{{ message }}');
-                $('#modalRedirect').hide();  // Hide the redirect button for errors
-              {% endif %}
-            {% endfor %}
-            $('#messageModal').modal('show');
-          {% endif %}
-        });
-      </script>
-            
-            
-    <form method="post">
+   <form method="post">
         {% csrf_token %}
         {% for field in form %}
             <div class="mb-3">
@@ -83,6 +65,33 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+      {% if messages %}
+          {% for message in messages %}
+              // Set the message text in the modal
+              $('#modalMessage').text('{{ message }}');
+  
+              // Check if the message is a success message
+              {% if message.tags == 'success' %}
+                  // Show the modal only for success messages
+                  $('#messageModal').modal('show');
+  
+                  // Handle the OK button click for success
+                  $('#modalOkButton').on('click', function () {
+                      window.location.href = "{% url 'booking' %}"; // Redirect to booking.html
+                  });
+  
+                  // Handle modal hidden event for success
+                  $('#messageModal').on('hidden.bs.modal', function () {
+                      window.location.href = "{% url 'booking' %}"; // Redirect to booking.html
+                  });
+              {% endif %}
+          {% endfor %}
+      {% endif %}
+  });
+  </script>
 
 {% endblock container-content %}
 
