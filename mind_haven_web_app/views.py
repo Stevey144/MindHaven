@@ -60,11 +60,12 @@ def booking(request):
     if request.method == "POST":
         form = BookingForm(request.POST)
         if form.is_valid():
-            form.save()  
-            messages.success(request, 'Appointment Booked!')
+            booking_fields = form.save()
+            booking_date =  booking_fields.date
+            messages.success(request,  f'Appointment Booked for {booking_date}. Please plan to attend.')
             return redirect('booking') 
         else:
-            messages.error(request, 'There was an error in booking this Appointment, please try again')  # Show error message
+            messages.error(request, 'There was an error in booking this Appointment, please try again')
     else:
         form = BookingForm()  
 
