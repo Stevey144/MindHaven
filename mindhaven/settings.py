@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+LOGIN_URL = 'appointment'
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -26,10 +29,7 @@ SECRET_KEY = 'django-insecure-+qh55=$+llpbj_la6zx+!g&p47c!ft=yr_xlmo2^n#7#a*0yzl
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

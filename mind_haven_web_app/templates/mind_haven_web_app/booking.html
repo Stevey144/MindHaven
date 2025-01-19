@@ -105,7 +105,10 @@
 
             {% include 'message.html' %}
 
-            {% include 'form-fields.html' %}
+            <form method="post" novalidate>
+                {% include 'form-fields.html' %}
+                <button type="submit" class="btn btn-primary">Confirm Booking</button>
+            </form>
             
         </div>
     </div>

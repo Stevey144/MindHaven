@@ -26,9 +26,10 @@ Appointment
     <h2>Sign In</h2>
 
     {% include 'message.html' %}
-
-    {% include 'form-fields.html' %}
-   
+    <form method="post" novalidate>
+        {% include 'form-fields.html' %}
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
     </div>
     </div>
 

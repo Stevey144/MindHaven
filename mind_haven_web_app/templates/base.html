@@ -100,9 +100,12 @@
 
 
     <div id="contact-us">
-        {% include 'form-fields.html' %}
+        <form method="post" novalidate>
+            {% include 'form-fields.html' %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
-
+    <br>
     <div class="footer">
         <h4 class="footer-text">All right reserved &copy; 2024 Aspire QMD.</h4>
     </div>

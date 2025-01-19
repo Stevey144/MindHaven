@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.messages import get_messages
+from django.contrib.auth.decorators import login_required
 
 from mind_haven_web_app.models import Signup
 from .forms import BookingForm, ContactsForm, SignInForm,SignupForm
@@ -60,13 +61,11 @@ def booking(request):
         form = BookingForm(request.POST)
         if form.is_valid():
             form.save()  
-            messages.success(request, 'Appointment Booked!') 
-            return redirect('booking.html') 
+            messages.success(request, 'Appointment Booked!')
+            return redirect('booking') 
         else:
             messages.error(request, 'There was an error in booking this Appointment, please try again')  # Show error message
     else:
         form = BookingForm()  
 
     return render(request, 'mind_haven_web_app/booking.html', {'form': form})
-
-
