@@ -1,12 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.messages import get_messages
-from django.contrib.auth.decorators import login_required
-from django.urls import reverse
 
-from mind_haven_web_app.models import Signup
-from mindhaven import settings
-from .forms import BookingForm, ContactsForm, SignInForm,SignupForm
+from mind_haven_web_app.models import AdminUser, Booking, Signup
+from .forms import AdminSignInForm, AdminUserForm, BookingForm, ContactsForm, SignInForm,SignupForm
 
 def contact_view(request):
     if request.method == 'POST':
@@ -36,6 +32,40 @@ def signup(request):
         form = SignupForm()  
 
     return render(request, 'mind_haven_web_app/signup.html', {'form': form})
+
+def admin_sign_up_view(request):
+     if request.method == "POST":
+        form = AdminUserForm(request.POST)
+        if form.is_valid():
+            form.save()  
+            messages.success(request, 'Admin User Created! please Sign In') 
+        else:
+            messages.error(request, 'There were some errors in your form. Please check the fields and try again.')  # Show error message
+     else:
+        form = AdminUserForm()  
+
+     return render(request, 'mind_haven_web_app/admin-sign-up.html', {'form': form})
+ 
+ 
+def admin_sign_in_view(request): 
+    if request.method == 'POST':
+        form = AdminSignInForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['Email']
+            password = form.cleaned_data['Password']
+
+            try:
+                admin_user = AdminUser.objects.get(email=email, password=password)
+                request.session['user_email'] = admin_user.email 
+                messages.success(request, 'Admin Login Successful!')
+            except AdminUser.DoesNotExist:
+                messages.error(request, 'Invalid email or password. Please try again.')
+
+    else:
+        form = AdminSignInForm()
+
+    return render(request, 'mind_haven_web_app/admin-sign-in.html', {'form': form})
+    
 
 
 def sign_in(request): 
@@ -74,3 +104,6 @@ def booking(request):
         form = BookingForm()  
 
     return render(request, 'mind_haven_web_app/booking.html', {'form': form})
+
+def booking_list(request):
+     return render(request, "mind_haven_web_app/view-booking.html", {"booking_list" : Booking.objects.all()})
