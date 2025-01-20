@@ -6,5 +6,6 @@
             {% if field.errors %}
                 <div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>
             {% endif %}
+            <input type="hidden" name="next" value="{{ next }}">
         </div>
     {% endfor %}

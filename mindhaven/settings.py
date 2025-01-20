@@ -14,7 +14,10 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
-LOGIN_URL = 'appointment'
+SESSION_COOKIE_AGE = 300  
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SAVE_EVERY_REQUEST = True  
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 

@@ -42,29 +42,22 @@ Appointment
     $(document).ready(function () {
         {% if messages %}
             {% for message in messages %}
-                // Set the message text in the modal
                 $('#modalMessage').text('{{ message }}');
     
-                // Check if the message is a success message
                 {% if message.tags == 'success' %}
-                    // Show the modal only for success messages
                     $('#messageModal').modal('show');
     
-                    // Handle the OK button click for success
                     $('#modalOkButton').on('click', function () {
-                        window.location.href = "{% url 'booking' %}"; // Redirect to booking.html
+                        window.location.href = "{% url 'booking' %}"; 
                     });
     
-                    // Handle modal hidden event for success
                     $('#messageModal').on('hidden.bs.modal', function () {
-                        window.location.href = "{% url 'booking' %}"; // Redirect to booking.html
+                        window.location.href = "{% url 'booking' %}"; 
                     });
                 {% endif %}
             {% endfor %}
         {% endif %}
     });
     </script>
-    
-    
 {% endblock container-content %}
     

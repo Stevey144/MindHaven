@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.messages import get_messages
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from mind_haven_web_app.models import Signup
+from mindhaven import settings
 from .forms import BookingForm, ContactsForm, SignInForm,SignupForm
 
 def contact_view(request):
@@ -36,7 +38,7 @@ def signup(request):
     return render(request, 'mind_haven_web_app/signup.html', {'form': form})
 
 
-def sign_in(request):
+def sign_in(request): 
     if request.method == 'POST':
         form = SignInForm(request.POST)
         if form.is_valid():
@@ -45,25 +47,27 @@ def sign_in(request):
 
             try:
                 user = Signup.objects.get(email=email, password=password)
+                request.session['user_email'] = user.email 
                 messages.success(request, 'Successfully signed in!')
             except Signup.DoesNotExist:
                 messages.error(request, 'Invalid email or password. Please try again.')
-    else:
-        storage = get_messages(request)
-        list(storage)  
 
+    else:
         form = SignInForm()
 
     return render(request, 'mind_haven_web_app/appointment.html', {'form': form})
 
 def booking(request):
+    
+    if 'user_email' not in request.session:
+        return redirect('appointment')
+    
     if request.method == "POST":
         form = BookingForm(request.POST)
         if form.is_valid():
             booking_fields = form.save()
             booking_date =  booking_fields.date
             messages.success(request,  f'Appointment Booked for {booking_date}. Please plan to attend.')
-            return redirect('booking') 
         else:
             messages.error(request, 'There was an error in booking this Appointment, please try again')
     else:
