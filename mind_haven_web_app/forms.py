@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import EmailInput, ModelForm,DateInput, NumberInput, Select, Textarea,TimeInput,TextInput,IntegerField, ValidationError
-from .models import AdminUser, Appointment, Booking, Contacts,Signup
+from .models import AdminUser, Booking, Contacts,Signup
+from django.contrib.auth.hashers import make_password
 
 class ContactsForm(ModelForm):
     class Meta:
@@ -16,14 +17,9 @@ class ContactsForm(ModelForm):
         }
         
         
-class SignInForm(ModelForm):
-    class Meta:
-        model = Appointment
-        fields = ['Email', 'Password']
-        widgets = {
-            'Email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}),
-            'Password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter your password'}),
-        }
+class SignInForm(forms.Form):
+    Email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}))
+    Password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter your password'}))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -72,7 +68,7 @@ class SignupForm(ModelForm):
         cleaned_data = super().clean()
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
-        
+
         if password != confirm_password:
             raise ValidationError("Password and Confirm Password do not match.")
         
@@ -83,6 +79,13 @@ class SignupForm(ModelForm):
         
         return cleaned_data
     
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.password = make_password(self.cleaned_data['password'])
+        if commit:
+            instance.save()
+        return instance
+
     
 class BookingForm(ModelForm):
     class Meta:
@@ -114,21 +117,27 @@ class AdminUserForm(ModelForm):
                 existing_classes = field.widget.attrs.get('class', '')
                 field.widget.attrs['class'] = f'{existing_classes} is-invalid'
                 
+           
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
-            
-            # Check if password and confirm password match
+
         if password != confirm_password:
-                raise ValidationError("Password and Confirm Password do not match.")
-            
-            # Check if email or username already exists
+            raise ValidationError("Password and Confirm Password do not match.")
+        
         email = cleaned_data.get('email')
-            
+        
         if AdminUser.objects.filter(email=email).exists():
-                raise ValidationError("A user with this email already exists.")
-            
+            raise ValidationError("A user with this email already exists.")
+        
         return cleaned_data
+    
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.password = make_password(self.cleaned_data['password'])
+        if commit:
+            instance.save()
+        return instance
     
 

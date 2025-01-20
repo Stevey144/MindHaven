@@ -26,15 +26,6 @@ class Contacts(models.Model):
     def __str__(self):
         return f"{self.FirstName} {self.last} - Phone: {self.phonenumbers}"
     
-    
-class Appointment(models.Model):
-    Email=models.CharField(max_length=100)
-    Password= models.CharField(max_length=50)
-        
-    def __str__(self):
-      return self.Email
-
-
 class Signup(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
