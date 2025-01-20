@@ -15,7 +15,7 @@ Appointment
 
 {% block container-content %}
 
-  <div class="section-for-sign-in mt-4">
+    <div class="section-for-sign-in mt-4">
         <div class="appointment-header">
             <h1 class="h1-text-for-appoitment mb-3"><b>Sign In To Book Appointment</b></h1>
             <div class="question-text">do not have an account? <a href="{% url 'sign-up' %}">Sign Up</a></div>
@@ -27,6 +27,7 @@ Appointment
 
     {% include 'message.html' %}
     <form method="post" novalidate>
+        {% csrf_token %}
         {% include 'form-fields.html' %}
         <button type="submit" class="btn btn-primary">Sign In</button>
     </form>
