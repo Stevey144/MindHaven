@@ -121,21 +121,42 @@ Appointment
     <script>
         $(document).ready(function () {
             {% if messages %}
+                let operation = '';
                 {% for message in messages %}
                     $('#modalMessage').text('{{ message }}');
+                    
+                    // Check if 'save' or 'update' exists in the tags
+                    {% if 'save' in message.tags %}
+                        operation = 'save'; 
+                    {% elif 'update' in message.tags %}
+                        operation = 'update'; 
+                    {% endif %}
                 {% endfor %}
-                $('#messageModal').modal('show');  // Show the modal only if there are messages
-        
+    
+                // Show the modal
+                $('#messageModal').modal('show');
+    
+                // Handle the button click to redirect based on the operation
                 $('#modalOkButton').on('click', function () {
-                    window.location.href = "{% url 'booking' %}"; // Redirect to booking.html
+                    if (operation === 'save') {
+                        window.location.href = "{% url 'welcome' %}"; 
+                    } else if (operation === 'update') {
+                        window.location.href = "{% url 'view-booking' %}";
+                    }
                 });
-        
+    
+                // Handle modal close to redirect based on the operation
                 $('#messageModal').on('hidden.bs.modal', function () {
-                    window.location.href = "{% url 'booking' %}"; // Redirect to booking.html
+                    if (operation === 'save') {
+                        window.location.href = "{% url 'welcome' %}"; 
+                    } else if (operation === 'update') {
+                        window.location.href = "{% url 'view-booking' %}";
+                    }
                 });
-        
+    
             {% endif %}
         });
-        </script>
+    </script>
+    
             
 {% endblock container-content %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
 
@@ -104,9 +104,9 @@ def booking(request):
         if form.is_valid():
             booking_fields = form.save()
             booking_date =  booking_fields.date
-            messages.success(request,  f'Appointment Booked for {booking_date}. Please plan to attend.')
+            messages.success(request,  f'Appointment Booked for {booking_date}. Please plan to attend.',extra_tags='save')
         else:
-            messages.error(request, 'There was an error in booking this Appointment, please try again')
+            messages.error(request, 'There was an error in booking this Appointment, please try again',extra_tags='save')
     else:
         form = BookingForm()  
 
@@ -116,3 +116,32 @@ def booking_list(request):
     if 'admin_user_email' not in request.session:
         return redirect('admin-sign-in')
     return render(request, "mind_haven_web_app/view-booking.html", {"booking_list" : Booking.objects.all()})
+
+
+def booking_detail(request, id):
+    booking_details =get_object_or_404(Booking, pk=id)
+    return render(request, "mind_haven_web_app/view-booking-details.html", {"booking_details": booking_details})
+
+
+def edit_booking_details(request, id):
+    booking = get_object_or_404(Booking, pk=id)
+
+    if request.method == 'POST':
+        form = BookingForm(request.POST, instance=booking)
+        if form.is_valid():
+            form.save() 
+            messages.success(request, 'Booking Details Updated!',extra_tags='update')
+            # return redirect('booking_detail', id=booking.id) 
+             
+        else:
+            messages.error(request, 'There was an error editing this Booking details, Please try again',extra_tags='update')
+    else:
+        form = BookingForm(instance=booking)
+
+    return render(request, 'mind_haven_web_app/booking.html', {'form': form, 'booking': booking})
+
+def delete_booking(request, id):
+   booking = get_object_or_404(Booking,pk=id) 
+   booking.delete()
+   
+   return redirect("view-booking")
