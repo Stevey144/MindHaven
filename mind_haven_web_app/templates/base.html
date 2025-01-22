@@ -20,31 +20,10 @@
             width: 50px !important;
         }
     </style>
+
+
 </head>
 <body>
- 
-
-    <div class="container container-media">
-        <div class="header">
-
-        <div class="logo">
-            <h1>MindHaven</h1>
-        </div>
-
-        <div class="nav">
-            <ul>
-                <li><a href="{% url 'welcome' %}">Home</a></li>
-                <li><a href="#Service-section">Services</a></li>
-                <li><a href="#contact-us" id="contact-align">Contact Us</a></li>
-                <li><a href="{% url 'admin-sign-up' %}">Admin</a></li>
-                <li>
-                <a href="{% url 'appointment' %}">Book Appointment</a>
-                </li>
-            </ul>
-        </div>
-
-    </div>
-
 
     <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -63,6 +42,46 @@
         </div>
     </div>
 
+    <div class="container container-media">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:burlywood !important;">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">MindHaven</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <li><a class="nav-link active" aria-current="page" href="{% url 'welcome' %}">Home</a></li>
+                  </li>
+                  <li class="nav-item">
+                    <li><a  class="nav-link" href="#Service-section">Services</a></li>
+                  </li>
+                  <li class="nav-item">
+                    <li><a class="nav-link" href="#contact-us" id="contact-align">Contact Us</a></li>
+                  </li>
+                  <li><a class="nav-link"  href="{% url 'admin-sign-up' %}">Admin</a></li>
+                  </li>
+    
+                  <li>
+                    <a  class="nav-link" href="{% url 'appointment' %}">Book Appointment</a>
+                    </li>
+    
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Account
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+
     {% block container-content %} 
     <div class="banner">
         <div class="appointment">
@@ -73,7 +92,7 @@
 
     <div class="Service-section" id="Service-section">
 
-        <div><h1 class="our-services">OUR SERVICES</h1></div>
+        <div><h1 class="our-services mt-5">OUR SERVICES</h1></div>
 
         <div ><h1 class="h-m">HOUSING AND MENTAL HEALTH SUPPORT</h1></div>
 
@@ -113,11 +132,8 @@
 
     </div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
     $(document).ready(function () {
         {% if messages %}

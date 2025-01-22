@@ -3,69 +3,10 @@
     font-family: Khand !important;
 }
 
-
-.container{
-    width: 1200px;
-    min-height: 700px;
-    background-color:#eee;
-    margin: auto;
-}
-
-.container .header{
-    width: 100%;
-    height: 100px;
-    background-color:burlywood;
-    padding: 10px;
-}
-
-.container .logo{
-    width: 30%;
-    float:left;
-}
-.container .logo h1{
-    color: white;
-    font-family: verdana;
-}
-
-.container .nav{
-    float: right;
-    width:65%;
-    padding: 10px;
-}
-.container .nav ul{
-    list-style-type: none;
-}
-.container .nav ul li{
-    float: left;
-}
-.container .nav ul li a{
-    text-decoration: none;
-    margin: 9px;
-    padding: 5px;
-    font-size: 20px;
-    font-family: verdana;
-    color: white;
-}
-.container .txtsearch{
-    font-size: 16px;
-    height: 30px;
-    border-radius: 20px;
-    width: 200px !important;
-}
-
 .container a:hover{
     background-color: blueviolet;
     color: white;
     border-radius: 10px;
-}
-.btn-search{
-    font-size: 20px;
-    border-radius: 10px;
-
-}
-.btn-search:hover{
-    background-color: blueviolet;
-    color:white;
 }
 
 .banner{
@@ -257,26 +198,6 @@
         background-color: #eee !important;
     }
      
-    .container .logo h1{
-        font-family: verdana;
-        font-size: 15px !important;
-    }
-     .nav{
-        width: 70% !important;
-        display: inline-flex !important;
-
-     }
-
-        .container .nav ul li a{
-            text-decoration: none;
-            font-size: 10px !important;
-            font-family: verdana;
-            color: white;
-            margin: 0  !important;
-            display: inline !important;
-            flex-shrink:initial;
-        }
-
     .appointment{
         width: 150px !important;
         float: left;
@@ -284,11 +205,6 @@
         border-radius: 10px;
         font-family: tahoma;
         margin: 35px -50px 0px 600px !important;
-    }
-
-
-    .banner{
-       margin-bottom: -200px !important;
     }
 
     .section-for-sign-up{
@@ -344,6 +260,11 @@
             width: 320px;
         }
 
+        .our-services{
+            font-size: 20px;
+        
+        }
+
 }
 
 
@@ -362,37 +283,10 @@
     background-color:#eee;
   }
 
-  .container .header{
-    width: 100%;
-    height: 100px;
-    background-color:burlywood;
-    padding: 10px;
-}
-
-.container .logo h1{
-    color: white;
-    font-family: verdana;
-    font-size: 20px;
-    margin-top: 25px;
-}
-
-.txtsearch, .btn-search{
-    visibility: hidden;
-}
-
-
-.container .nav ul li a{
-    text-decoration: none;
-    margin: 4px;
-    padding: 3px;
-    font-size: 15px;
-    font-family: verdana;
-    color: white;
-}
 
 .banner{
     width: 100% !important;
-    height: 500px;
+    height: 300px;
     background-image: url('/static/images/support-worker1.jpg');
     background-size:contain;
     background-repeat: no-repeat;
