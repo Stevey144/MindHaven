@@ -92,7 +92,7 @@ class BookingForm(ModelForm):
         model = Booking
         fields = ['date', 'textarea']
         widgets = {
-            'date': DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'date': DateInput(attrs={'class': 'form-control', 'id':'mydate'}),
             'textarea': Textarea(attrs={'class': 'form-control', 'cols': 45, 'rows': 10}),
         }
         
