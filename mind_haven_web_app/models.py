@@ -46,10 +46,10 @@ class AdminUser(models.Model):
  
 class Booking(models.Model):
     date = models.DateField()
-    textarea=models.TextField()
+    reason=models.TextField()
     
     def __str__(self):
-      return f"{self.date} {self.textarea}"
+      return f"{self.date} {self.reason}"
     
     
     

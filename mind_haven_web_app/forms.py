@@ -90,10 +90,10 @@ class SignupForm(ModelForm):
 class BookingForm(ModelForm):
     class Meta:
         model = Booking
-        fields = ['date', 'textarea']
+        fields = ['date', 'reason']
         widgets = {
             'date': DateInput(attrs={'class': 'form-control', 'id':'mydate'}),
-            'textarea': Textarea(attrs={'class': 'form-control', 'cols': 45, 'rows': 10}),
+            'reason': Textarea(attrs={'class': 'form-control', 'cols': 45, 'rows': 10}),
         }
         
 class AdminUserForm(ModelForm):
