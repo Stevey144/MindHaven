@@ -5,21 +5,12 @@
 Admin-sign-In
 {% endblock title %}
 
-{% block css-static-link %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-<link href='https://fonts.googleapis.com/css?family=Khand' rel='stylesheet'>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-{% endblock css-static-link %}
-
 {% block container-content %}
-
 <div class="section-for-sign-in mt-4">
     <div class="appointment-header">
         <h1 class="h1-text-for-appoitment mb-3 text-center"><b>Sign In to view Bookings by users</b></h1>
          <div class="question-text text-center"> do not have an admin account? <a href="{% url 'admin-sign-up' %}">Sign Up As Admin</a></div> 
     </div>
-
-
 {% include 'message.html' %}
 <form method="post" novalidate>
     {% csrf_token %}
